@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Menu - EduStream</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Student Menu</h1>
+
+        <label for="subject">Choose Classroom:</label>
+        <select id="subject" name="subject" required>
+            <option value="">--Select a Subject--</option>
+            <option value="APP">Advanced Programming Practice</option>
+            <option value="COA">Computer Organization and Architecture</option>
+            <option value="DSA">Data Structures and Algorithms</option>
+            <option value="DTM">Design Thinking and Methodology</option>
+            <option value="OS">Operating Systems</option>
+            <option value="PE">Professional Ethics</option>
+            <option value="TBVP">Transforms and Boundary Value Problems</option>
+        </select>
+
+        <div class="buttons">
+            <!-- Join Video Call Button -->
+            <button onclick="joinVideoCall()">Join Video Call</button>
+
+            <!-- View Uploaded Content Button -->
+            <button onclick="viewUploadedContent()">View Uploaded Content</button>
+
+            <!-- View Attendance Button -->
+            <button onclick="viewAttendance()">View Attendance</button>
+
+            <!-- View Assignments Button -->
+            <button onclick="viewAssignments()">View Assignments</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to join video call with classroom code
+        function joinVideoCall() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                const url = "https://meet.jit.si/" + selectedSubject;
+                window.open(url, "_blank"); // Open video call in a new tab
+            } 
+            else 
+            {
+                alert('Please select a subject before joining a video call.');
+            }
+        }
+
+        // Function to view uploaded content based on selected classroom
+        function viewUploadedContent() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                let driveLink = '';
+
+                switch (selectedSubject) 
+                {
+                    case 'APP':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1JadvYZ6TTYR83YG4lg9yyW2w5zt95dst';
+                        break;
+
+                    case 'COA':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1tBghqbacLCxubSf5i2lOSNeC1KG0IL2a';
+                        break;
+
+                    case 'DSA':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/10citgfP9CjsLp1mrQ6_zLYbtFE1VqZdV';
+                        break;
+
+                    case 'DTM':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1jPqMMIGke11RsGzj95eYSNTEwOxTXXSD';
+                        break;
+
+                    case 'OS':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1bpDTq6G5ICwDYNz-3c8z27RdpKox-fPV';
+                        break;
+
+                    case 'PE':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1sEcqe_UZhub6VBC15TySJMxDgggkSYlu';
+                        break;
+                        
+                    case 'TBVP':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1Z5u9sDpsT0W9k5FiEpEI8854-XKtcsjL';
+                        break;
+
+                    default:
+                        alert('Please select a valid subject.');
+                        return;
+                }
+
+                alert('Navigating to view uploaded content for ' + subjectSelect.options[subjectSelect.selectedIndex].text + '...');
+                window.open(driveLink, '_blank'); // Open the link in a new tab
+            }
+            else 
+            {
+                alert('Please select a subject before viewing the uploaded content.');
+            }
+        }
+
+        // function to view attendance based on the selected classroom code
+        function viewAttendance() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject)
+            {
+                alert('No attendance to show...');
+                // window.location.href = 'track_attendance.html';
+            }
+            else
+            {
+                alert('Please select a subject before viewing the tracking attendance page.');
+            }
+        }
+
+        // function to view assignments based on the selected classroom code
+        function viewAssignments() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                let assignmentLink = '';
+
+                switch (selectedSubject) 
+                {
+                    case 'APP':
+                        assignmentLink = 'https://drive.google.com/drive/folders/1RERnS8ogHFOdzUSLlVYL5p0Hp6-j6ciQ?usp=drive_link';
+                        break;
+
+                    case 'COA':
+                        assignmentLink = 'https://drive.google.com/drive/folders/1AeezkdNTtTEdFbLYad7YZ2KjA2ia4xp4?usp=drive_link';
+                        break;
+
+                    case 'DSA':
+                        assignmentLink = 'https://drive.google.com/drive/folders/17uiySQFssE_iQTugkUNTfxIMn1VUstUp?usp=drive_link';
+                        break;
+
+                    case 'DTM':
+                        assignmentLink = 'https://drive.google.com/drive/folders/1xG9AYH75g9dA4khMVqTwQUp2pBh3ppxs?usp=drive_link';
+                        break;
+
+                    case 'OS':
+                        assignmentLink = 'https://drive.google.com/drive/folders/1UME6_h8baOQxxNQMrqIsAMvRPHb5TGK9?usp=drive_link';
+                        break;
+
+                    case 'PE':
+                        assignmentLink = 'https://drive.google.com/drive/folders/1Ok-cfMsuJR309ZKkbQSXYakJJVaU0gMd?usp=drive_link';
+                        break;
+
+                    case 'TBVP':
+                        assignmentLink = 'https://drive.google.com/drive/folders/1WZvqCBvLEloths1mr5aZi2pEYV30ZS7d?usp=drive_link';
+                        break;
+                        
+                    default:
+                        alert('Please select a valid subject.');
+                        return;
+                }
+
+                alert('Navigating to add assessments for ' + subjectSelect.options[subjectSelect.selectedIndex].text + '...');
+                window.open(assignmentLink, '_blank');
+            } 
+            else 
+            {
+                alert('Please select a subject before adding an assessment.');
+            }
+        }
+
+    </script>
+</body>
+</html>

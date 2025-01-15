@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Menu - EduStream</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Teacher Menu</h1>
+
+        <div class="classroom-info">
+            <label for="subject">Select Subject:</label>
+            <select id="subject" onchange="updateClassroomName()">
+                <option value="">--Select a Subject--</option>
+                <option value="APP">Advanced Programming Practice</option>
+                <option value="COA">Computer Organization and Architecture</option>
+                <option value="DSA">Data Structures and Algorithms</option>
+                <option value="DTM">Design Thinking and Methodology</option>
+                <option value="OS">Operating Systems</option>
+                <option value="PE">Professional Ethics</option>
+                <option value="TBVP">Transforms and Boundary Value Problems</option>
+            </select>
+            <h2 id="classroomName"></h2>
+        </div>
+
+        <div class="buttons">
+            <button onclick="startVideoCall()">Start Video Call</button>
+            <button onclick="openUploadModal()">Upload Content</button>
+            <button onclick="viewUploadedContent()">View Uploaded Content</button>
+            <button onclick="trackAttendance()">Attendance Tracking</button>
+            <button onclick="viewTestScores()">View Test Scores</button>
+            <button onclick="window.location.href='index.html'">Logout</button>
+        </div>
+    </div>
+
+    <!-- Upload Content Modal -->
+    <div id="uploadModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Upload Content</h2>
+            <form id="uploadForm">
+                <label for="fileInput">Select a file to upload:</label>
+                <input type="file" id="fileInput" required>
+                <br><br>
+                <button type="button" onclick="uploadContent()">Upload</button>
+            </form>
+            <p id="statusMessage" style="color: green;"></p>
+        </div>
+    </div>
+
+    <script>
+
+        // function to update classroom names
+        function updateClassroomName() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const classroomName = document.getElementById('classroomName');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                classroomName.innerText = `Classroom: ${selectedSubject} Class`;
+            }
+
+            else 
+            {
+                classroomName.innerText = '';
+            }
+        }
+
+        // function to start video call based on the selected classroom code
+        function startVideoCall() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                const meetingLink = "https://meet.jit.si/" + selectedSubject;
+                window.open(meetingLink, '_blank'); // Open the link in a new tab
+            } 
+
+            else 
+            {
+                alert('Please select a subject before starting the video call.');
+            }
+        }
+
+        // function to view uploaded content based on the selected classroom code
+        function viewUploadedContent() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                let driveLink = '';
+
+                switch (selectedSubject) 
+                {
+                    case 'APP':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1JadvYZ6TTYR83YG4lg9yyW2w5zt95dst';
+                        break;
+
+                    case 'COA':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1tBghqbacLCxubSf5i2lOSNeC1KG0IL2a';
+                        break;
+
+                    case 'DSA':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/10citgfP9CjsLp1mrQ6_zLYbtFE1VqZdV';
+                        break;
+
+                    case 'DTM':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1jPqMMIGke11RsGzj95eYSNTEwOxTXXSD';
+                        break;
+
+                    case 'OS':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1bpDTq6G5ICwDYNz-3c8z27RdpKox-fPV';
+                        break;
+
+                    case 'PE':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1sEcqe_UZhub6VBC15TySJMxDgggkSYlu';
+                        break;
+                        
+                    case 'TBVP':
+                        driveLink = 'https://drive.google.com/drive/u/0/folders/1Z5u9sDpsT0W9k5FiEpEI8854-XKtcsjL';
+                        break;
+
+                    default:
+                        alert('Please select a valid subject.');
+                        return;
+                }
+
+                alert('Navigating to view uploaded content for ' + subjectSelect.options[subjectSelect.selectedIndex].text + '...');
+                window.open(driveLink, '_blank'); // Open the link in a new tab
+            }
+
+            else 
+            {
+                alert('Please select a subject before viewing the uploaded content.');
+            }
+        }
+
+        // function to track attendance based on the selected classroom code
+        function trackAttendance() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject)
+            {
+                alert('No attendance to show...');
+                // window.location.href = 'track_attendance.html';
+            }
+
+            else
+            {
+                alert('Please select a subject before viewing the tracking attendance page.');
+            }
+        }
+
+        function viewTestScores() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                let testLink = '';
+
+                switch (selectedSubject) 
+                {
+                    case 'APP':
+                        testLink = 'https://docs.google.com/spreadsheets/d/1rI-Oz9kyf4tbLVbPv4OvPaBvEDnQERoSLpnZAawflSE/edit?resourcekey=&gid=561621786#gid=561621786';
+                        break;
+
+                    case 'COA':
+                        testLink = 'https://docs.google.com/spreadsheets/d/1B4ZVEdaToWjH59GGNMmYYdV_uYDaH_GbF7whR8KtT9g/edit?resourcekey=&gid=2011780477#gid=2011780477';
+                        break;
+
+                    case 'DSA':
+                        testLink = 'https://docs.google.com/spreadsheets/d/1IUz1G7L9gNHCgSXLrvGky7mycVNEbrvh_dgqaDrUH6k/edit?resourcekey=&gid=63114766#gid=63114766';
+                        break;
+
+                    case 'DTM':
+                        alert('No tests found for Design Thinking and Methodology!');
+                        break;
+
+                    case 'OS':
+                        testLink = 'https://docs.google.com/spreadsheets/d/1orHs1iE95eRP4CF7YIKLwHdVRlszUewOzg18majB1lk/edit?resourcekey=&gid=1856480872#gid=1856480872';
+                        break;
+
+                    case 'PE':
+                    alert('No tests found for Professional Ethics!');
+                    break;
+
+                    case 'TBVP':
+                        testLink = 'https://docs.google.com/spreadsheets/d/1-sCzqcDUpuu5YOLM0q6A1VlE2Vc9Kn4PLZrZouQUDuE/edit?resourcekey=&gid=1246231875#gid=1246231875';
+                        break;
+
+                    default:
+                        alert('Please select a valid subject.');
+                        return;
+                }
+
+                alert('Navigating to view test scores for ' + subjectSelect.options[subjectSelect.selectedIndex].text + '...');
+                window.open(testLink, '_blank'); // Open the link in a new tab
+            }
+
+            else 
+            {
+                alert('Please select a subject before viewing a test score.');
+            }
+        }
+
+        function openUploadModal() 
+        {
+            document.getElementById('uploadModal').style.display = 'block';
+        }
+
+        function closeUploadModal() 
+        {
+            document.getElementById('uploadModal').style.display = 'none';
+            document.getElementById('statusMessage').textContent = ''; 
+            document.getElementById('uploadForm').reset(); 
+        }
+
+        // function to upload content based on the selected classroom code
+        function uploadContent() 
+        {
+            const subjectSelect = document.getElementById('subject');
+            const selectedSubject = subjectSelect.value;
+
+            if (selectedSubject) 
+            {
+                const fileInput = document.getElementById('fileInput');
+                const statusMessage = document.getElementById('statusMessage');
+
+                if (fileInput.files.length > 0) 
+                {
+                    const fileName = fileInput.files[0].name;
+                    statusMessage.textContent = "Uploaded: " + fileName;
+                } 
+
+                else 
+                {
+                    alert("Please select a file to upload.");
+                }
+            } 
+            else 
+            {
+                alert('Please select a subject before uploading content.');
+            }
+        }
+
+
+    </script>
+</body>
+</html>

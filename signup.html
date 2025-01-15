@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduStream Signup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <form id="loginForm" onsubmit="redirectToDashboard(event)">
+        <label for="role">Role:</label>
+        <select name="role" id="role" required>
+            <option value="">--Select a Role--</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+        </select>
+
+        <!-- Teacher Signup Fields -->
+        <div id="teacher-signup" style="display: none;">
+            <label for="teacherName">Name:</label>
+            <input type="text" id="teacherName" name="teacherName" required>
+            <label for="teacherUsername">Username:</label>
+            <input type="text" id="teacherUsername" name="teacherUsername" required>
+            <label for="teacherSubject">Subject:</label>
+            <input type="text" id="teacherSubject" name="teacherSubject" required>
+            <label for="teacherId">Teacher ID:</label>
+            <input type="text" id="teacherId" name="teacherId" required>
+            <label for="teacherPassword">Password:</label>
+            <input type="password" id="teacherPassword" name="teacherPassword" required>
+            <label for="teacherCode">Teacher Code:</label>
+            <input type="text" id="teacherCode" name="teacherCode" required>
+        </div>
+
+        <!-- Student Signup Fields -->
+        <div id="student-signup" style="display: none;">
+            <label for="studentName">Name:</label>
+            <input type="text" id="studentName" name="studentName" required>
+            <label for="studentUsername">Username:</label>
+            <input type="text" id="studentUsername" name="studentUsername" required>
+            <label for="studentClass">Class:</label>
+            <input type="text" id="studentClass" name="studentClass" required>
+            <label for="studentRollNumber">Roll Number:</label>
+            <input type="text" id="studentRollNumber" name="studentRollNumber" required>
+            <label for="studentPassword">Password:</label>
+            <input type="password" id="studentPassword" name="studentPassword" required>
+        </div>
+
+        <button type="submit">Signup</button>
+    </form>
+
+    <script>
+        const roleSelect = document.getElementById('role');
+        const teacherSignup = document.getElementById('teacher-signup');
+        const studentSignup = document.getElementById('student-signup');
+
+        roleSelect.addEventListener('change', () => 
+        {
+            if (roleSelect.value === 'teacher') 
+            {
+                teacherSignup.style.display = 'block';
+                studentSignup.style.display = 'none';
+            } 
+            else if (roleSelect.value === 'student') 
+            {
+                teacherSignup.style.display = 'none';
+                studentSignup.style.display = 'block';
+            }
+        });
+
+        function redirectToDashboard(event) 
+        {
+            event.preventDefault();
+            const role = document.getElementById('role').value;
+
+            if (role === 'teacher') 
+            {
+                window.location.href = 'teacher_menu.html';
+            } 
+            else if (role === 'student') 
+            {
+                window.location.href = 'student_menu.html';
+            } 
+            else 
+            {
+                alert('Please select a valid role.');
+            }
+        }
+    </script>
+</body>
+</html>

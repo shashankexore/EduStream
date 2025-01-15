@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> EduStream Login </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <br>
+    <br>
+    <form id="loginForm" onsubmit="redirectToDashboard(event)">
+        <label for="role">Role:</label>
+        <select name="role" id="role" required>
+            <option value="">--Select a role--</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+            <option value="admin">Administrator</option>
+        </select>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label id="extra-code-label" style="display: none;" for="extraCode">Code:</label>
+        <input id="extra-code-input" type="text" name="extraCode" style="display: none;">
+        <button>Login</button>
+    </form>
+
+    <script>
+        const role = document.getElementById('role');
+        const extraCodeLabel = document.getElementById('extra-code-label');
+        const extraCodeInput = document.getElementById('extra-code-input');
+
+        role.addEventListener('change', () => 
+        {
+            if (role.value === 'teacher' || role.value === 'admin') 
+            {
+                extraCodeLabel.style.display = 'block';
+                extraCodeInput.style.display = 'block';
+            } 
+
+            else 
+            {
+                extraCodeLabel.style.display = 'none';
+                extraCodeInput.style.display = 'none';
+            }
+        });
+
+        function redirectToDashboard(event) 
+        {
+            event.preventDefault();
+
+            const role = document.getElementById('role').value; // Get selected role
+
+            if (role === 'teacher') 
+            {
+                window.location.href = 'teacher_menu.html'; // Redirect to teacher menu
+            } 
+            
+            else if (role === 'student') 
+            {
+                window.location.href = 'student_menu.html'; // Redirect to student menu
+            } 
+            
+            else if (role === 'admin')
+            {
+                alert('Admin controls are implemented here.') // Redirect to admin menu
+            }
+
+            else
+            {
+                alert('Please select a valid role.'); // Alert if role is not selected
+            }
+        }
+    </script>
+</body>
+</html>
