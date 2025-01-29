@@ -65,7 +65,7 @@ Feel free to fork this project and submit pull requests for any improvements or 
 
 ## Credits
 
-Created by Shashank Singh and Anushka Banerjee(@anushka369).
+Created by Shashank Singh[@shashankexore](https://github.com/shashankexore) and Anushka Banerjee [@anushka369](https://github.com/anushka369).
 
 ## Clone the repository:
    ```bash
